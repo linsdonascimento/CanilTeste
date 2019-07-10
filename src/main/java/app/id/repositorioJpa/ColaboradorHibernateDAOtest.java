@@ -10,66 +10,65 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import app.id.model.Animal;
+import app.id.model.Colaborador;
 import app.id.model.HibernateUtil;
-import app.id.model.dao.AnimalDAO;
+import app.id.model.dao.ColaboradorDAO;
 
 /**
  *
  * @author
  */
-public class AnimalHibernateDAO implements AnimalDAO<Animal>{
+public class ColaboradorHibernateDAOtest implements ColaboradorDAO<Colaborador> {
+
 	private EntityManager em;
 
-	private static AnimalDAO instance;
-	
-        
-        private AnimalHibernateDAO (){
+	private static ColaboradorDAO instance;
+
+        private ColaboradorHibernateDAOtest(){
+           
             
         }
         
-      
-	public static AnimalDAO getInstance() {
+        
+	public static ColaboradorDAO getInstance() {
 
 		if (instance == null) {
-			instance = new AnimalHibernateDAO();
+			instance = new ColaboradorHibernateDAOtest();
 
 		}
 		return instance;
 	}
 	
-	
-	public Animal inserir(Animal animal) {
+	public Colaborador inserir(Colaborador colaborador) {
 		em = HibernateUtil.getEntityManager();
 
 		try {
 			this.em.getTransaction().begin();
-			this.em.persist(animal);
+			this.em.persist(colaborador);
 
 			this.em.getTransaction().commit();
 
 		} catch (Exception e) {
-			System.out.println("erro insirir ao" + e);
+			System.out.println("erro ao " + e);
 			this.em.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			this.em.close();
 		}
-		return animal;
+		return colaborador;
 	}
-
-	public void alterar(Animal animal) {
+	public void alterar(Colaborador colaborador) {
 		em = HibernateUtil.getEntityManager();
 
 		try {
 			this.em.getTransaction().begin();
 
-			this.em.merge(animal);
+			this.em.merge(colaborador);
 
 			this.em.getTransaction().commit();
 
 		} catch (Exception e) {
-			System.out.println("erro alterar ao" + e);
+			System.out.println("erro ao " + e);
 			this.em.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
@@ -78,28 +77,30 @@ public class AnimalHibernateDAO implements AnimalDAO<Animal>{
 
 	}
 
-	public Animal recuperar(String codAnimal) {
+	public Colaborador recuperar(String cpf) {
 		em = HibernateUtil.getEntityManager();
 
-		Animal ani = null;
+		Colaborador col = null;
 
 		try {
-			ani = em.find(Animal.class, codAnimal);
+			col = em.find(Colaborador.class, cpf);
 
 		} finally {
 			em.close();
 		}
-		return ani;
+		return col;
 
 	}
 
-	public void deletar(Integer id_animal) {
+	public void deletar(Integer idCol) {
+		
 		em = HibernateUtil.getEntityManager();
-
-		Animal ani = em.find(Animal.class, id_animal);
+		
+		
+		Colaborador cola = em.find(Colaborador.class, idCol);
 		try {
 			em.getTransaction().begin();
-			em.remove(ani);
+			em.remove(cola);
 			em.getTransaction().commit();
 		} finally {
 			em.close();
@@ -107,63 +108,41 @@ public class AnimalHibernateDAO implements AnimalDAO<Animal>{
 
 	}
 
-
-	public List<Animal> listarTodos() {
+	public List<Colaborador> listarTodos() {
 		em = HibernateUtil.getEntityManager();
-		List<Animal> animais;
+		List<Colaborador> colaboradores;
 
 		try {
-			TypedQuery<Animal> a = em.createQuery("from Animal", Animal.class);
-			animais = a.getResultList();
+			TypedQuery<Colaborador> c = em.createQuery("from Colaborador", Colaborador.class);
+			colaboradores = c.getResultList();
 
 		} catch (Exception e) {
-			animais = new ArrayList();
+			colaboradores = new ArrayList();
 
 		} finally {
 			em.close();
 		}
-		return animais;
-
+		return colaboradores;
 	}
-
-
-	public List<Animal> animaisOrfao() {
-		
+	public void alterarSenha(Colaborador colaborador) {
 		em = HibernateUtil.getEntityManager();
-		List<Animal> animais;
 
 		try {
-			TypedQuery<Animal> a = em.createQuery("from Animal where Cliente is null", Animal.class);
-			animais = a.getResultList();
-
-		} catch (Exception e) {
-			animais = new ArrayList();
-
-		} finally {
-			em.close();
-		}
-		return animais;
-
-	}
-
-    @Override
-    public Animal adotar(Animal animal) {
-        
-    try {
 			this.em.getTransaction().begin();
-			this.em.persist(animal);
+
+			this.em.merge(colaborador);
 
 			this.em.getTransaction().commit();
 
 		} catch (Exception e) {
-			System.out.println("erro insirir ao adotar" + e);
+			System.out.println("erro ao " + e);
 			this.em.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			this.em.close();
 		}
-		return animal;
-	}    
-    
+
+	}
+
 }
 

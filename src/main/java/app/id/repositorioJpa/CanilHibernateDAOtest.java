@@ -18,13 +18,13 @@ import app.id.model.dao.InterfaceDao;
  *
  * @author 
  */
-public class CanilHibernateDAO implements InterfaceDao<Canil> {
+public class CanilHibernateDAOtest implements InterfaceDao<Canil> {
 	private EntityManager em;
 
 	private static InterfaceDao instance;
 	
 
-        private CanilHibernateDAO(){
+        private CanilHibernateDAOtest(){
     
           }
         
@@ -32,7 +32,7 @@ public class CanilHibernateDAO implements InterfaceDao<Canil> {
 	public static InterfaceDao getInstance() {
 
 		if (instance == null) {
-			instance = new CanilHibernateDAO();
+			instance = new CanilHibernateDAOtest();
 
 		}
 		return instance;

@@ -7,7 +7,7 @@ package app.id.model;
 
 import java.util.List;
 
-import app.id.repositorioJpa.CanilHibernateDAO;
+import app.id.repositorioJpa.CanilHibernateDAOtest;
 
 /**
  *
@@ -22,17 +22,17 @@ public class CanilModel {
 	public void cadastrarCanil(Canil canil) {
 	
              
-            if(CanilHibernateDAO.getInstance().recuperar(canil.getCodCanil())== null){
+            if(CanilHibernateDAOtest.getInstance().recuperar(canil.getCodCanil())== null){
                   
-                CanilHibernateDAO.getInstance().inserir(canil);
+                CanilHibernateDAOtest.getInstance().inserir(canil);
         
                
 	     }
         }
 	public void alterarCanil(Canil canil) {
             
-            if (CanilHibernateDAO.getInstance().recuperar(canil.getCodCanil())!= null) {
-                  CanilHibernateDAO.getInstance().alterar(canil);
+            if (CanilHibernateDAOtest.getInstance().recuperar(canil.getCodCanil())!= null) {
+                  CanilHibernateDAOtest.getInstance().alterar(canil);
             }	
          }	
 
@@ -40,7 +40,7 @@ public class CanilModel {
 	public void removerCanil(Integer idcanil){
    
             if(idcanil != null){
-                CanilHibernateDAO.getInstance().deletar(idcanil);
+                CanilHibernateDAOtest.getInstance().deletar(idcanil);
             }
                    
 	
@@ -52,11 +52,11 @@ public class CanilModel {
 			return null;
 		}
 
-		return (Canil) CanilHibernateDAO.getInstance().recuperar(codCanil);
+		return (Canil) CanilHibernateDAOtest.getInstance().recuperar(codCanil);
 	}
 
 	public List<Canil> RecuperarTodos() {
-		return CanilHibernateDAO.getInstance().listarTodos();
+		return CanilHibernateDAOtest.getInstance().listarTodos();
 	}
         
 }

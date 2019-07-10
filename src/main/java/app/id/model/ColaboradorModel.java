@@ -9,7 +9,7 @@ import java.util.List;
 
 import app.id.model.dao.ColaboradorDAO;
 import app.id.model.dao.InterfaceDao;
-import app.id.repositorioJpa.ColaboradorHibernateDAO;
+import app.id.repositorioJpa.ColaboradorHibernateDAOtest;
 
 /**
  *
@@ -20,22 +20,22 @@ public class ColaboradorModel {
     
 
 	public void cadastrarColaborador(Colaborador colaborador) {
-		if (ColaboradorHibernateDAO.getInstance().recuperar(colaborador.getCpf()) == null) {
-			ColaboradorHibernateDAO.getInstance().inserir(colaborador);
+		if (ColaboradorHibernateDAOtest.getInstance().recuperar(colaborador.getCpf()) == null) {
+			ColaboradorHibernateDAOtest.getInstance().inserir(colaborador);
 		}
 
 	}
 
 	public void alterarColaborador(Colaborador colaborador) {
-		if (ColaboradorHibernateDAO.getInstance().recuperar(colaborador.getCpf()) != null) {
-			ColaboradorHibernateDAO.getInstance().alterar(colaborador);
+		if (ColaboradorHibernateDAOtest.getInstance().recuperar(colaborador.getCpf()) != null) {
+			ColaboradorHibernateDAOtest.getInstance().alterar(colaborador);
 		}
 	}
 
 	public Colaborador removerColaborador(Integer idCol) {
 
 		if (idCol != null) {
-			ColaboradorHibernateDAO.getInstance().deletar(idCol);
+			ColaboradorHibernateDAOtest.getInstance().deletar(idCol);
 
 		}
 		return null;
@@ -47,11 +47,11 @@ public class ColaboradorModel {
 			return null;
 		}
 
-		return (Colaborador) ColaboradorHibernateDAO.getInstance().recuperar(cpf);
+		return (Colaborador) ColaboradorHibernateDAOtest.getInstance().recuperar(cpf);
 	}
 
 	public List<Colaborador> RecuperarTodos() {
-		return ColaboradorHibernateDAO.getInstance().listarTodos();
+		return ColaboradorHibernateDAOtest.getInstance().listarTodos();
 	}
 
 }

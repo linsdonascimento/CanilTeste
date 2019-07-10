@@ -9,7 +9,7 @@ import java.util.List;
 
 import app.id.model.dao.AnimalDAO;
 import app.id.model.dao.InterfaceDao;
-import app.id.repositorioJpa.AnimalHibernateDAO;
+import app.id.repositorioJpa.AnimalHibernateDAOtest;
 
 /**
  *
@@ -17,12 +17,12 @@ import app.id.repositorioJpa.AnimalHibernateDAO;
  */
 public class AnimalModel {
 	
-   AnimalDAO<Animal> dao = AnimalHibernateDAO.getInstance();
+   AnimalDAO<Animal> dao = AnimalHibernateDAOtest.getInstance();
     
 
     
     public void cadastrarAnimal(Animal animal) {
-		if (AnimalHibernateDAO.getInstance().recuperar(animal.getCodAnimal()) == null) {
+		if (AnimalHibernateDAOtest.getInstance().recuperar(animal.getCodAnimal()) == null) {
 		
                     dao.inserir(animal);
 		}
@@ -32,8 +32,8 @@ public class AnimalModel {
 	}
 
 	public void alterarAnimal(Animal animal) {
-	        if ( AnimalHibernateDAO.getInstance().recuperar(animal.getCodAnimal())!= null) {
-	            AnimalHibernateDAO.getInstance().alterar(animal);
+	        if ( AnimalHibernateDAOtest.getInstance().recuperar(animal.getCodAnimal())!= null) {
+	            AnimalHibernateDAOtest.getInstance().alterar(animal);
 	        }
 	    }
 
@@ -41,7 +41,7 @@ public class AnimalModel {
    
 		
 		if (idAnimal != null) {
-			 AnimalHibernateDAO.getInstance().deletar(idAnimal);
+			 AnimalHibernateDAOtest.getInstance().deletar(idAnimal);
 
 		} 
 		return null;
@@ -53,15 +53,15 @@ public class AnimalModel {
 			return null;
 		}
 
-		return (Animal) AnimalHibernateDAO.getInstance().recuperar(codAnimal);
+		return (Animal) AnimalHibernateDAOtest.getInstance().recuperar(codAnimal);
 	}
 
 	public List<Animal> RecuperarTodos() {
-		return AnimalHibernateDAO.getInstance().listarTodos();
+		return AnimalHibernateDAOtest.getInstance().listarTodos();
 	}
         public List<Animal>RecuperarOrfaos(){
             
-            return AnimalHibernateDAO.getInstance().animaisOrfao();
+            return AnimalHibernateDAOtest.getInstance().animaisOrfao();
         }
 
 }

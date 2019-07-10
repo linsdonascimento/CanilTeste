@@ -11,7 +11,7 @@ import javax.faces.context.FacesContext;
 
 import app.id.model.dao.ClienteDAO;
 import app.id.model.dao.InterfaceDao;
-import app.id.repositorioJpa.ClienteHibernateDAO;
+import app.id.repositorioJpa.ClienteHibernateDAOtest;
 
 /**
  *
@@ -19,11 +19,11 @@ import app.id.repositorioJpa.ClienteHibernateDAO;
  */
 public class ClienteModel {
    
-     ClienteDAO<Cliente> dao = ClienteHibernateDAO.getInstance();
+     ClienteDAO<Cliente> dao = ClienteHibernateDAOtest.getInstance();
     
   public void cadastrarCliente(Cliente cliente) {
       
-      if(ClienteHibernateDAO.getInstance().recuperar(cliente.getCliCpf())== null){
+      if(ClienteHibernateDAOtest.getInstance().recuperar(cliente.getCliCpf())== null){
             
         dao.inserir(cliente);
       
@@ -33,9 +33,9 @@ public class ClienteModel {
        
   } 
    public void alterarCliente(Cliente cliente) {
-        if ( ClienteHibernateDAO.getInstance().recuperar(cliente.getCliCpf())!= null) {
+        if ( ClienteHibernateDAOtest.getInstance().recuperar(cliente.getCliCpf())!= null) {
           
-            ClienteHibernateDAO.getInstance().alterar(cliente);
+            ClienteHibernateDAOtest.getInstance().alterar(cliente);
         }
     }
 
@@ -43,7 +43,7 @@ public class ClienteModel {
       
        
         if (idCli != null){
-        ClienteHibernateDAO.getInstance().deletar(idCli);
+        ClienteHibernateDAOtest.getInstance().deletar(idCli);
         }
     
     }
@@ -54,11 +54,11 @@ public class ClienteModel {
             return null;
         }
         
-        return (Cliente)(ClienteHibernateDAO.getInstance().recuperar(cliCpf)); 
+        return (Cliente)(ClienteHibernateDAOtest.getInstance().recuperar(cliCpf)); 
     }
 
     public List<Cliente> RecuperarTodos() {
-        return ClienteHibernateDAO.getInstance().listarTodos();
+        return ClienteHibernateDAOtest.getInstance().listarTodos();
     }
  
 
