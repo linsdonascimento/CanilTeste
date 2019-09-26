@@ -30,7 +30,8 @@ public class Canil implements Serializable {
         @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int idCanil;
 	@Column(length = 20,nullable = false)
-        private String codCanil;
+        
+	private String codCanil;
         @Column(length=60,nullable = false)
 	private String nome;
 

@@ -15,10 +15,6 @@ import app.id.repositorioJpa.CanilHibernateDAOtest;
  */
 public class CanilModel {
     
-             
-       
-       
-        
 	public void cadastrarCanil(Canil canil) {
 	
              
