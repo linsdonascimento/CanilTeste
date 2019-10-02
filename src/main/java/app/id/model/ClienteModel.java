@@ -60,6 +60,14 @@ public class ClienteModel {
     public List<Cliente> RecuperarTodos() {
         return ClienteHibernateDAOtest.getInstance().listarTodos();
     }
+    
+    /////////////////////////////////////
+    
+    public void cadastroCli(Cliente cliente){
+    	
+    	
+    }
+    
  
 
 }

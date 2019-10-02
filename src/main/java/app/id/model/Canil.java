@@ -6,6 +6,7 @@
 package app.id.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -19,20 +20,20 @@ import javax.persistence.Table;
 
 /**
  *
- * @author 
+ * @author
  */
 @Entity
 @Table(name = "canil")
 public class Canil implements Serializable {
 
 	@Id
-        @Column(name="id_canil",nullable = false)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id_canil", nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int idCanil;
-	@Column(length = 20,nullable = false)
-        
+	@Column(length = 20, nullable = false)
+
 	private String codCanil;
-        @Column(length=60,nullable = false)
+	@Column(length = 60, nullable = false)
 	private String nome;
 
 	@Embedded
@@ -42,106 +43,132 @@ public class Canil implements Serializable {
 	@ManyToMany(mappedBy = "listaCanis")
 	private List<Colaborador> listaColaboradores;
 
-	
-	
-	
+	ArrayList<Canil> listacanil;
+
 	public Canil() {
+
+		listacanil = new ArrayList();
 
 	}
 
-    public Canil( String codCanil, String nome, Endereço endereço, List<Colaborador> listaColaboradores) {
-        
-        this.codCanil = codCanil;
-        this.nome = nome;
-        this.endereço = endereço;
-        this.listaColaboradores = listaColaboradores;
-    }
+	public Canil(int idCanil, String codCanil, String nome, Endereço endereço) {
+		this.idCanil = idCanil;
+		this.codCanil = codCanil;
+		this.nome = nome;
+		this.endereço = endereço;
 
-    public int getIdcanil() {
-        return idCanil;
-    }
+		listacanil = new ArrayList();
 
-    public void setIdcanil(int idcanil) {
-        this.idCanil = idcanil;
-    }
+	}
 
-    public String getCodCanil() {
-        return codCanil;
-    }
+	public int getIdCanil() {
+		return idCanil;
+	}
 
-    public void setCodCanil(String codCanil) {
-        this.codCanil = codCanil;
-    }
+	public void setIdCanil(int idCanil) {
+		this.idCanil = idCanil;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getCodCanil() {
+		return codCanil;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setCodCanil(String codCanil) {
+		this.codCanil = codCanil;
+	}
 
-    public Endereço getEndereço() {
-        return endereço;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setEndereço(Endereço endereço) {
-        this.endereço = endereço;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public List<Colaborador> getListaColaboradores() {
-        return listaColaboradores;
-    }
+	public Endereço getEndereço() {
+		return endereço;
+	}
 
-    public void setListaColaboradores(List<Colaborador> listaColaboradores) {
-        this.listaColaboradores = listaColaboradores;
-    }
+	public void setEndereço(Endereço endereço) {
+		this.endereço = endereço;
+	}
 
+	public List<Colaborador> getListaColaboradores() {
+		return listaColaboradores;
+	}
 
-    
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Canil other = (Canil) obj;
-        if (this.idCanil != other.idCanil) {
-            return false;
-        }
-        if (!Objects.equals(this.codCanil, other.codCanil)) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.endereço, other.endereço)) {
-            return false;
-        }
-        if (!Objects.equals(this.listaColaboradores, other.listaColaboradores)) {
-            return false;
-        }
-        return true;
-    }
+	public void setListaColaboradores(List<Colaborador> listaColaboradores) {
+		this.listaColaboradores = listaColaboradores;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + this.idCanil;
-        hash = 29 * hash + Objects.hashCode(this.codCanil);
-        hash = 29 * hash + Objects.hashCode(this.nome);
-        hash = 29 * hash + Objects.hashCode(this.endereço);
-        hash = 29 * hash + Objects.hashCode(this.listaColaboradores);
-        return hash;
-    }
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Canil other = (Canil) obj;
+		if (this.idCanil != other.idCanil) {
+			return false;
+		}
+		if (!Objects.equals(this.codCanil, other.codCanil)) {
+			return false;
+		}
+		if (!Objects.equals(this.nome, other.nome)) {
+			return false;
+		}
+		if (!Objects.equals(this.endereço, other.endereço)) {
+			return false;
+		}
+		if (!Objects.equals(this.listaColaboradores, other.listaColaboradores)) {
+			return false;
+		}
+		return true;
+	}
 
-    
-    public String toString() {
-        return "Canil{" + "idCanil=" + idCanil + ", codCanil=" + codCanil + ", nome=" + nome + ", endere\u00e7o=" + endereço + ", listaColaboradores=" + listaColaboradores + '}';
-    }
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 29 * hash + this.idCanil;
+		hash = 29 * hash + Objects.hashCode(this.codCanil);
+		hash = 29 * hash + Objects.hashCode(this.nome);
+		hash = 29 * hash + Objects.hashCode(this.endereço);
+		hash = 29 * hash + Objects.hashCode(this.listaColaboradores);
+		return hash;
+	}
+
+	public String toString() {
+		return "Canil{" + "idCanil=" + idCanil + ", codCanil=" + codCanil + ", nome=" + nome + ", endere\u00e7o="
+				+ endereço + ", listaColaboradores=" + listaColaboradores + '}';
+	}
+
+	public void cadastroCanil(Canil canil) {
+		listacanil.add(canil);
+
+	}
+
+	public void removeCanil(int idCanil) {
+		for (Canil canil : listacanil) {
+			if (canil.getIdCanil() == idCanil) {
+
+				listacanil.remove(canil);
+
+			}
+		}
+	}
+
+	public void alterarCanil(Canil canil) {
+		for(Canil canil1 : listacanil) {
+			if (canil1.getCodCanil() == canil.getCodCanil()){
+
+				listacanil.remove(canil);
+				listacanil.add(canil1);
+			}
+		}
+	}
 
 }

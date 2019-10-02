@@ -7,6 +7,7 @@ package app.id.model;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -55,17 +56,29 @@ public class Cliente implements Serializable {
  
   @Embedded
   private Endereço endereço;     
- 
+
+  ArrayList<Cliente> listacli;
   public Cliente(){
+	  listacli = new ArrayList();
       
   }
 
-    public Cliente(String cliCpf, String nome, String login, String senha, Endereço endereço) {
+    public ArrayList<Cliente> getListacli() {
+	return listacli;
+}
+
+public void setListacli(ArrayList<Cliente> listacli) {
+	this.listacli = listacli;
+}
+
+	public Cliente(int idCli,String cliCpf, String nome, String login, String senha, Endereço endereço) {
+		this.idCli = idCli;
         this.cliCpf = cliCpf;
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.endereço = endereço;
+        listacli = new ArrayList();
     }
 
    
@@ -157,5 +170,34 @@ public class Cliente implements Serializable {
     public String toString() {
         return "Cliente{" + "idCli=" + idCli + ", cliCpf=" + cliCpf + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", endere\u00e7o=" + endereço + '}';
     }
+    
+    public void cadastroCli(Cliente cliente){
+    	listacli.add(cliente);
+    	
+    }
 
+    public void removeCli(int idCli)
+    {for(Cliente cliente : listacli){
+		if(cliente.getIdCli() == idCli){
+			
+			listacli.remove(cliente);
+			
+		}
+	}
+    	
+    }
+    
+    public void alterarCli(Cliente cliente){
+    	for(Cliente cliente1 : listacli){
+    		if(cliente1.getCliCpf() == cliente.getCliCpf()){
+    			
+    			listacli.remove(cliente);
+    			listacli.add(cliente1);
+    		}
+    	}
+    	
+    }
+    
+    
+    
   }

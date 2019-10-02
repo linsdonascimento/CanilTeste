@@ -6,6 +6,7 @@
 package app.id.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,15 +56,20 @@ public class Animal implements Serializable  {
 	@JoinColumn(name = "canil_id_canil", referencedColumnName = "id_canil")
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Canil canil;
+	
+
+	  ArrayList<Animal> listanimal;
 
 	public Animal() {
+
+		  listanimal = new ArrayList();
 
 	}
 
         
-    public Animal( String codAnimal, String nomeAni, int idade, String porte,
+    public Animal( int idAnimal,String codAnimal, String nomeAni, int idade, String porte,
             String raça, String tipo, String data_entrada, String data_adotado, Cliente cliente, Canil canil) {
-       
+        this.idAnimal = idAnimal;
         this.codAnimal = codAnimal;
         this.nomeAni = nomeAni;
         this.idade = idade;
@@ -74,6 +80,8 @@ public class Animal implements Serializable  {
         this.data_adotado = data_adotado;
         this.cliente = cliente;
         this.canil = canil;
+
+		  listanimal = new ArrayList();
     }
 
     public int getIdAnimal() {
@@ -216,6 +224,32 @@ public class Animal implements Serializable  {
     @Override
     public String toString() {
         return "Animal{" + "idAnimal=" + idAnimal + ", codAnimal=" + codAnimal + ", nomeAni=" + nomeAni + ", idade=" + idade + ", porte=" + porte + ", ra\u00e7a=" + raça + ", tipo=" + tipo + ", data_entrada=" + data_entrada + ", data_adotado=" + data_adotado + ", cliente=" + cliente + ", canil=" + canil + '}';
+    }
+    public void cadastroAnimal(Animal animal){
+    	listanimal.add(animal);
+    	
+    }
+
+    public void removeAnimal(int idAnimal)
+    {for(Animal animal : listanimal){
+		if(animal.getIdAnimal() == idAnimal){
+			
+			listanimal.remove(animal);
+			
+		}
+	}
+    	
+    }
+    
+    public void alterarCli(Animal animal){
+    	for(Animal animal1 : listanimal){
+    		if(animal1.getCodAnimal() == animal.getCodAnimal()){
+    			
+    			listanimal.remove(animal);
+    			listanimal.add(animal1);
+    		}
+    	}
+    	
     }
 
 	

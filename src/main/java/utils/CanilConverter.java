@@ -41,7 +41,7 @@ public class CanilConverter implements Converter {
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
         Canil canil = (Canil) o;
-        return canil.getIdcanil() + "";
+        return canil.getIdCanil() + "";
 
     }
 
