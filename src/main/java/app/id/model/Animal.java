@@ -225,10 +225,16 @@ public class Animal implements Serializable  {
     public String toString() {
         return "Animal{" + "idAnimal=" + idAnimal + ", codAnimal=" + codAnimal + ", nomeAni=" + nomeAni + ", idade=" + idade + ", porte=" + porte + ", ra\u00e7a=" + raça + ", tipo=" + tipo + ", data_entrada=" + data_entrada + ", data_adotado=" + data_adotado + ", cliente=" + cliente + ", canil=" + canil + '}';
     }
-    public void cadastroAnimal(Animal animal){
-    	listanimal.add(animal);
-    	
+    public boolean cadastroAnimal(Animal animal){
+    	if(listanimal.add(animal)){
+			
+    		return true;
+    		
+		}else{
+			
+			return false; 	
     }
+   }
 
     public void removeAnimal(int idAnimal)
     {for(Animal animal : listanimal){
@@ -241,7 +247,7 @@ public class Animal implements Serializable  {
     	
     }
     
-    public void alterarCli(Animal animal){
+    public void alterarAnimal(Animal animal){
     	for(Animal animal1 : listanimal){
     		if(animal1.getCodAnimal() == animal.getCodAnimal()){
     			

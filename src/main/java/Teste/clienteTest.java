@@ -11,11 +11,13 @@ import app.id.model.Cliente;
 import app.id.model.Endereço;
 
 public class clienteTest {
+	
 	Cliente cli = new Cliente();
-	private static Cliente c1;
-	private static Cliente c2;
-	private static Endereço endi;  
-	private static Cliente c3;
+	
+	private Cliente c1;
+	private Cliente c2;
+	private Endereço endi;  
+	private Cliente c3;
 
 	@Before
 	public void setUp() throws Exception {
@@ -29,9 +31,7 @@ public class clienteTest {
 	@Test
 	public void testCadastroCli() {
 
-		cli.cadastroCli(c1);
-		assertTrue(true);
-		
+		assertTrue(cli.cadastroCli(c1));
 	}
 	
 	@Test
@@ -53,8 +53,6 @@ public class clienteTest {
 	public void testAlterar(){
 		c1.setCliCpf("200");
 		cli.alterarCli(c1);
-		assertTrue(true);
 	}
 	
-
 }

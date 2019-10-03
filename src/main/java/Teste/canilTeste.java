@@ -13,10 +13,10 @@ import app.id.model.Endereço;
 public class canilTeste {
 	Canil can = new Canil();
 
-	private static Canil c1;
-	private static Canil c2;
-	private static Endereço endi;
-	private static Canil c3;
+	private Canil c1;
+	private Canil c2;
+	private Endereço endi;
+	private Canil c3;
 
 	@Before
 	public void objetoIniciado() {
@@ -29,8 +29,7 @@ public class canilTeste {
 	@Test
     public void testCadastro() {
         
-        can.cadastroCanil(c1);
-		assertTrue(true);
+		assertTrue(can.cadastroCanil(c1));
               
     }
 	
@@ -46,11 +45,11 @@ public class canilTeste {
 	public void testDeletar() {
 	
 		can.removeCanil(233);
-		assertTrue(true);
 	}
 	
 	@Test
 	public void testAlterar(){
+		
 		c1.setCodCanil("500");
 		can.alterarCanil(c1);
 		

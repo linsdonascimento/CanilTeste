@@ -7,29 +7,34 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import app.id.model.Animal;
 import app.id.model.Canil;
+import app.id.model.Cliente;
 import app.id.model.Endereço;
 
-public class animalTeste {Canil can = new Canil();
+public class animalTeste {
+	
+	
+Animal animal = new Animal();
 
-private static Canil c1;
-private static Canil c2;
-private static Endereço endi;
-private static Canil c3;
+private Animal c1;
+private Animal c2;
+private Canil canil;
+private Cliente cli;
+private Animal c3;
 
 @Before
 public void objetoIniciado() {
 
-	c1 = new Canil(233,"533", "canil pe", endi);
-	c2 = new Canil(233,"533", "canil pe", endi);
-	c3 = new Canil(456,"534", "DogLar", endi);
+	c1 = new Animal(233,"88888", "Hercules", 2,"Pequeno", "Vira Lata","Cão", "27/09/2019", "03/10/2019", cli, canil);
+	c2 = new Animal(233,"88888", "Hercules", 2,"Pequeno", "Vira Lata","Cão", "27/09/2019", "03/10/2019", cli, canil);
+	c3 = new Animal(563,"77152", "Sabrina", 3,"Pequeno", "Vira Lata","Cão", "28/08/2019", "12/09/2019", cli, canil);
 }
 
 @Test
 public void testCadastro() {
     
-    can.cadastroCanil(c1);
-	assertTrue(true);
+	assertTrue(animal.cadastroAnimal(c1));
           
 }
 
@@ -44,14 +49,12 @@ public void testIguais(){
 @Test
 public void testDeletar() {
 
-	can.removeCanil(233);
-	assertTrue(true);
+	animal.removeAnimal(233);
 }
 
 @Test
 public void testAlterar(){
-	c1.setCodCanil("500");
-	can.alterarCanil(c1);
-	
+	c1.setCodAnimal("500");
+	animal.alterarAnimal(c1);	
 }
 }

@@ -146,9 +146,12 @@ public class Canil implements Serializable {
 				+ endereço + ", listaColaboradores=" + listaColaboradores + '}';
 	}
 
-	public void cadastroCanil(Canil canil) {
-		listacanil.add(canil);
-
+	public boolean cadastroCanil(Canil canil) {
+		if(listacanil.add(canil)){
+			return true;
+		}else{
+			return false;
+			}
 	}
 
 	public void removeCanil(int idCanil) {
