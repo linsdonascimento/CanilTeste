@@ -22,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -69,6 +70,15 @@ public class Cliente implements Serializable {
 
 	public Cliente(int idCli, String cliCpf, String nome, String login, String senha, Endereço endereço) {
 		this.idCli = idCli;
+		this.cliCpf = cliCpf;
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+		this.endereço = endereço;
+		listacli = new ArrayList();
+	}
+	
+	public Cliente(String cliCpf, String nome, String login, String senha, Endereço endereço) {
 		this.cliCpf = cliCpf;
 		this.nome = nome;
 		this.login = login;
